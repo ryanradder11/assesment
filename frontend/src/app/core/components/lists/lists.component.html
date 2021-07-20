@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Lijsten</h2>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <p> Alle lijsten aanwezig op de server:</p>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <ng-container *ngIf="lists$ | async as lists">
+        <mat-list-item *ngFor="let list of lists"><a href="javascript:void(0)" (click)="openDialog(list.id)">{{list.name}}</a>
+        <mat-action-list>
+          <button><mat-icon aria-hidden="false" aria-label="Wijzigen" (click)="openEditDialog(list.id)">edit</mat-icon></button>
+          <button><mat-icon aria-hidden="false" aria-label="Verwijder lijst" (click)="delete(list.id)">delete</mat-icon></button>
+        </mat-action-list>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

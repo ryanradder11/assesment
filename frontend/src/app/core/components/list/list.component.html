@@ -1,0 +1,35 @@
+<div mat-dialog-content>
+  <a (click)="onClickUpdate(list.id)" style="float: right" href="javascript:void(0)"><p>Wijzig lijst</p></a>
+
+  <div id="title" [hidden]="changeTitle">
+    <h1 (click)="changeTitle = true" mat-dialog-title>{{list.name}}</h1>
+  </div>
+
+  <div id="title_change" [hidden]="!changeTitle">
+    <h3>Wijzig de lijst naam:</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Lijst naam</mat-label>
+      <input id="list-name" [formControl]="listNameControl" matInput [value]="list.name">
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="onNoClick()">Annuleer</button>
+      <button mat-raised-button color="primary" (click)="onUpdateClick()" [disabled]="!listNameControl.valid"
+              [mat-dialog-close]="list" cdkFocusInitial>Ok
+      </button>
+    </div>
+  </div>
+
+
+  <div id="todo-items">
+
+    <h3>Items:</h3>
+
+    <mat-card-content>
+      <mat-selection-list #todoItems (selectionChange)="selectionChange($event)">
+        <mat-list-option [selected]="listItem.completed" *ngFor="let listItem of list.items" [value]="listItem">{{listItem.name}}
+        </mat-list-option>
+      </mat-selection-list>
+
+    </mat-card-content>
+  </div>
+</div>

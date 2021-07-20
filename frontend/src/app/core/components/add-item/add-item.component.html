@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <p> Voeg {{itemName}} toe </p>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <p> Geef de {{itemName}} een naam en klik op toevoegen </p>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field appearance="fill">
+      <mat-label>{{itemName}} naam</mat-label>
+      <input id="list-name" [formControl]="listNameControl" matInput>
+    </mat-form-field>
+    <br/>
+    <button [disabled]="!listNameControl.valid" mat-raised-button color="primary" (click)="add()">Voeg {{itemName}} toe</button>
+  </mat-card-content>
+</mat-card>
+
+

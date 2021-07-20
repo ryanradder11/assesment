@@ -1,0 +1,56 @@
+<div mat-dialog-content>
+  <a (click)="onclickViewList(list.id)" style="float: right" href="javascript:void(0)"><p>Bekijk lijst</p></a>
+  <div id="title" [hidden]="changeTitle">
+    <a href="javascript:void(0)"><h1 (click)="changeTitle = true" mat-dialog-title>{{list.name}}</h1></a>
+  </div>
+
+  <div id="title_change" [hidden]="!changeTitle" style="margin-bottom: 40px">
+    <h3>Wijzig de lijst naam:</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Lijst naam</mat-label>
+      <input id="list-name" [formControl]="listNameControl" matInput [value]="list.name">
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="onNoClick()">Annuleer</button>
+      <button mat-raised-button color="primary" (click)="onUpdateClick()" [disabled]="!listNameControl.valid"
+              [mat-dialog-close]="list" cdkFocusInitial>Ok
+      </button>
+    </div>
+  </div>
+
+
+  <div id="todo-items">
+
+    <h3>Items:</h3>
+
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item  *ngFor="let listItem of list.items">
+          <ng-container *ngIf="!listItem.editable" >
+            <span >{{listItem.name}}</span>
+            <mat-action-list>
+              <button><mat-icon aria-hidden="false" aria-label="Wijzigen" (click)="editListItem(listItem)">edit</mat-icon></button>
+              <button><mat-icon aria-hidden="false" aria-label="Verwijder lijst" (click)="deleteListItem(list, listItem)">delete</mat-icon></button>
+            </mat-action-list>
+          </ng-container>
+
+          <ng-container *ngIf="listItem?.editable">
+            <mat-form-field appearance="fill">
+              <mat-label>Item naam</mat-label>
+              <input id="item-name" [formControl]="itemNameControl" matInput>
+            </mat-form-field>
+            <br/>
+            <button [disabled]="!itemNameControl.valid" mat-raised-button color="primary" (click)="updateItem(listItem)">Update</button>
+          </ng-container>
+
+        </mat-list-item>
+      </mat-list>
+
+
+    </mat-card-content>
+  </div>
+  <div>
+    <a [hidden]="addItem" href="javascript:void(0)"><h3 (click)="addItem = true" mat-dialog-title>Voeg item toe</h3></a>
+    <app-add-item (newItemAddedSucces)="addedItem($event)" [hidden]="!addItem" [inputList]="list" [itemName]="'to-do item'"></app-add-item>
+  </div>
+</div>
