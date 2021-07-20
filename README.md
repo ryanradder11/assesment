@@ -13,7 +13,7 @@ Then:
 
 Once all the containers are initialized, you need to connect to the backend container:
 
-`docker exec -t -i todo_backend /bin/bash`
+`docker exec -t -i local_backend /bin/bash`
 
 we will find ourselves already in the folder / var / www / backend
 
