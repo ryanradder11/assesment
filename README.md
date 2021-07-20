@@ -21,6 +21,10 @@ we install all the dependencies:
 
 `composer install`
 
+And then 
+
+`php artisan migrate`
+
 For the backend it is not necessary to execute the command php artisan because the nginx container is linked on the public laraver folder
 
 As for the frontend (Angular) I made sure to expose the 4200, in this way you edit the file locally but links it on the docker instantly and angular cli does the rest on the docker.
@@ -33,6 +37,7 @@ frontend: `localhost:4200`
 
 phpmyadmin: `localhost:7000`
 
+Per standard the frontend uses:'https://todo-api.niveaubepaling.nl' to use the local backend change USE_MOCK_API to TRUE in frontend/src/app/config/constants.ts
 
 
 
