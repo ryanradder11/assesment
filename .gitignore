@@ -1,5 +1,4 @@
 docker/mysql/dbdata/*
-.env
 # IDEs and editors
 /.idea
 .project
