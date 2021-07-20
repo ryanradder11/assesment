@@ -10,7 +10,7 @@ import {List} from "../../models/list";
 import {By} from "@angular/platform-browser";
 
 
-describe('ListModalComponent', () => {
+fdescribe('ListModalComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
   const mockDialogRef = {
@@ -20,7 +20,11 @@ describe('ListModalComponent', () => {
   const mockList: List = {
     id: '4',
     name: 'test',
-    items: []
+    items: [
+      {name: 'boter', id: '1', completed: false, editable: false},
+      {name: 'kaas', id: '2', completed: true, editable: false},
+      {name: 'eieren', id: '3', completed: false, editable: true},
+    ]
   };
 
   beforeEach(async () => {
@@ -50,6 +54,11 @@ describe('ListModalComponent', () => {
 
   it('should contain correct title', () => {
     expect(component.list.name).toBe('test');
+  });
+
+  it('should show 3 items', () => {
+    const numberOfMatFormFields = fixture.debugElement.queryAll(By.css('mat-list-option')).length;
+    expect(numberOfMatFormFields).toEqual(3);
   });
 
 });

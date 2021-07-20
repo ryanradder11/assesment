@@ -19,17 +19,13 @@
     </div>
   </div>
 
-
   <div id="todo-items">
-
     <h3>Items:</h3>
-
     <mat-card-content>
-      <mat-selection-list #todoItems (selectionChange)="selectionChange($event)">
+      <mat-selection-list (selectionChange)="selectionChange($event)">
         <mat-list-option [selected]="listItem.completed" *ngFor="let listItem of list.items" [value]="listItem">{{listItem.name}}
         </mat-list-option>
       </mat-selection-list>
-
     </mat-card-content>
   </div>
 </div>

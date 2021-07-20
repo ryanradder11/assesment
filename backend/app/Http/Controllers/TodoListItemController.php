@@ -37,7 +37,19 @@ class TodoListItemController extends Controller
     }
 
     function patch(Request $request, $id, $itemId){
-//        $todoListItem = todoListItem::where('todo_list_id', $id)->andwhere('id', $itemId)->first();
-        return json_encode($request, $id, $itemId);
+
+        $validated = $request->validate([
+            'name' => 'required_without:completed|min:2|max:255',
+            'completed' => 'required_without:name',
+        ]);
+
+       $todoListItem = todoListItem::where('todo_list_id', $id)->where('id', $itemId)->first();
+       $todoListItem->name = $request->input('name');
+       $todoListItem->completed = $request->input('completed');
+       $todoListItem->save();
+
+       $response = new \stdClass();
+       $response->data = $todoListItem;
+       return json_encode($response);
     }
 }

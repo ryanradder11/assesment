@@ -18,19 +18,22 @@
     </div>
   </div>
 
-
   <div id="todo-items">
-
     <h3>Items:</h3>
-
     <mat-card-content>
       <mat-list>
-        <mat-list-item  *ngFor="let listItem of list.items">
-          <ng-container *ngIf="!listItem.editable" >
-            <span >{{listItem.name}}</span>
+        <mat-list-item *ngFor="let listItem of list.items">
+          <ng-container *ngIf="!listItem.editable">
+            <span>{{listItem.name}}</span>
             <mat-action-list>
-              <button><mat-icon aria-hidden="false" aria-label="Wijzigen" (click)="editListItem(listItem)">edit</mat-icon></button>
-              <button><mat-icon aria-hidden="false" aria-label="Verwijder lijst" (click)="deleteListItem(list, listItem)">delete</mat-icon></button>
+              <button>
+                <mat-icon aria-hidden="false" aria-label="Wijzigen" (click)="editListItem(listItem)">edit</mat-icon>
+              </button>
+              <button>
+                <mat-icon aria-hidden="false" aria-label="Verwijder lijst" (click)="deleteListItem(list, listItem)">
+                  delete
+                </mat-icon>
+              </button>
             </mat-action-list>
           </ng-container>
 
@@ -40,17 +43,19 @@
               <input id="item-name" [formControl]="itemNameControl" matInput>
             </mat-form-field>
             <br/>
-            <button [disabled]="!itemNameControl.valid" mat-raised-button color="primary" (click)="updateItem(listItem)">Update</button>
+            <button [disabled]="!itemNameControl.valid" mat-raised-button color="primary"
+                    (click)="updateItem(listItem)">Update
+            </button>
           </ng-container>
-
         </mat-list-item>
       </mat-list>
-
-
     </mat-card-content>
   </div>
+
   <div>
     <a [hidden]="addItem" href="javascript:void(0)"><h3 (click)="addItem = true" mat-dialog-title>Voeg item toe</h3></a>
-    <app-add-item (newItemAddedSucces)="addedItem($event)" [hidden]="!addItem" [inputList]="list" [itemName]="'to-do item'"></app-add-item>
+    <app-add-item (newItemAddedSucces)="addedItem($event)" [hidden]="!addItem" [inputList]="list"
+                  [itemName]="'to-do item'"></app-add-item>
   </div>
+
 </div>

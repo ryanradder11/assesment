@@ -7,7 +7,6 @@ import {List} from "../../models/list";
 import {EventEmitter} from '@angular/core';
 import {SnackbarService} from "../../services/snackbar.service";
 
-
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
@@ -39,7 +38,7 @@ export class AddItemComponent implements OnDestroy {
         this.listService.addItemToList(this.inputList, this.listNameControl.value).pipe(
           tap({
             next: _ => {
-              this.snackbarService.showSnackbarDuration('Todo item succesvol toegevoegd');
+              this.snackbarService.showSnackbarDuration('Todo item successvol toegevoegd');
             },
             error: () => {
             }

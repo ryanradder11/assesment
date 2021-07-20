@@ -53,6 +53,8 @@ export class ListComponent implements OnDestroy {
 
   selectionChange(event: { option: { value: ListItem, selected: boolean } }) {
     let todoItem = event.option.value;
+    todoItem.completed = event.option.selected;
+
     this.subscriptions.add(
       this.listService.updateTodoItem(this.list, todoItem).pipe(
         tap({
@@ -61,6 +63,7 @@ export class ListComponent implements OnDestroy {
             this.snackbarSerivce.showSnackbarDuration(event.option.selected ? 'Todo afgevinkt' : 'Todo ongedaan gemaakt');
           },
           error: () => {
+            todoItem.completed = !event.option.selected;
           }
         }),
       ).subscribe());
@@ -74,5 +77,4 @@ export class ListComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\TodoList;
 use App\todoListItem;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\Cast\Object_;
 
 class TodoListController extends Controller
 {
@@ -53,10 +52,8 @@ class TodoListController extends Controller
         return json_encode($todoList);
     }
 
-
     function delete($id){
         TodoList::destroy($id);
         return json_encode('');
     }
-
 }
